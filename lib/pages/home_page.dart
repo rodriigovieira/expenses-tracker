@@ -4,6 +4,10 @@ import '../drawer.dart';
 import '../button_pad.dart';
 
 class HomePage extends StatefulWidget {
+  Function addExpense;
+
+  HomePage(this.addExpense);
+
   @override
   State<StatefulWidget> createState() {
     return _HomePageState();
@@ -12,15 +16,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String _displayText = 'Hello, World!';
+  String _holderText = '';
   String _operationType = '';
 
   changeDisplayText(String text) {
     if (text == 'LIMPAR') {
-      setState(() => _displayText = '0');
+      setState(() {
+        _displayText = '0';
+        _holderText = '';
+        _operationType = '';
+      });
     } else if (text == '+' || text == '-') {
       setState(() => _operationType = text);
+    } else if (text == 'CRIAR') {
+      widget.addExpense(_holderText);
     } else {
-      setState(() => _displayText += text);
+      _holderText += text;
+      setState(() => _displayText = _holderText);
     }
   }
 
