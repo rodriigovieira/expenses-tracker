@@ -6,42 +6,42 @@ class ButtonPad extends StatelessWidget {
   ButtonPad(this.changeDisplayText);
 
   @override
-
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Container(
           child: Row(
             children: <Widget>[
-             _ButtonBuilder(changeDisplayText, '+', textColor: Colors.green),
-             _ButtonBuilder(changeDisplayText, '-', textColor: Colors.red[900]),
+              _ButtonBuilder(changeDisplayText, '+', textColor: Colors.green),
+              _ButtonBuilder(changeDisplayText, '-',
+                  textColor: Colors.red[900]),
             ],
           ),
         ),
         Container(
           child: Row(
             children: <Widget>[
-             _ButtonBuilder(changeDisplayText, '1'),
-             _ButtonBuilder(changeDisplayText, '2'),
-             _ButtonBuilder(changeDisplayText, '3'),
+              _ButtonBuilder(changeDisplayText, '1'),
+              _ButtonBuilder(changeDisplayText, '2'),
+              _ButtonBuilder(changeDisplayText, '3'),
             ],
           ),
         ),
         Container(
           child: Row(
             children: <Widget>[
-             _ButtonBuilder(changeDisplayText, '4'),
-             _ButtonBuilder(changeDisplayText, '5'),
-             _ButtonBuilder(changeDisplayText, '6'),
+              _ButtonBuilder(changeDisplayText, '4'),
+              _ButtonBuilder(changeDisplayText, '5'),
+              _ButtonBuilder(changeDisplayText, '6'),
             ],
           ),
         ),
         Container(
           child: Row(
             children: <Widget>[
-             _ButtonBuilder(changeDisplayText, '7'),
-             _ButtonBuilder(changeDisplayText, '8'),
-             _ButtonBuilder(changeDisplayText, '9'),
+              _ButtonBuilder(changeDisplayText, '7'),
+              _ButtonBuilder(changeDisplayText, '8'),
+              _ButtonBuilder(changeDisplayText, '9'),
             ],
           ),
         ),
@@ -49,8 +49,9 @@ class ButtonPad extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 40.0),
           child: Row(
             children: <Widget>[
-             _ButtonBuilder(changeDisplayText, 'LIMPAR'),
-             _ButtonBuilder(changeDisplayText, 'CRIAR', textColor: Colors.green),
+              _ButtonBuilder(changeDisplayText, 'LIMPAR'),
+              _ButtonBuilder(changeDisplayText, 'CRIAR',
+                  textColor: Colors.green),
             ],
           ),
         ),
@@ -74,9 +75,16 @@ class _ButtonBuilder extends StatelessWidget {
         padding: EdgeInsets.all(24.0),
         child: Text(
           buttonText,
-          style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold, color: textColor),
+          style: TextStyle(
+              fontSize: 27.0, fontWeight: FontWeight.bold, color: textColor),
         ),
-        onPressed: () => changeDisplayText(buttonText),
+        onPressed: () {
+          changeDisplayText(buttonText);
+
+          if (buttonText == 'CRIAR') {
+            Navigator.pushReplacementNamed(context, '/list');
+          }
+        },
       ),
     );
   }
